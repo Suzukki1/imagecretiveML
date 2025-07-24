@@ -156,7 +156,7 @@
         <h1>🎨 Generador de Fotos de Usabilidad</h1>
         <p class="subtitle">Genera 10 fotos profesionales de tu producto con Inteligencia Artificial</p>
         
-        <form id="productForm" method="post">
+        <form id="productForm"> 
             <div class="form-group">
                 <label for="url">🔗 Link del Artículo:</label>
                 <input 
@@ -256,14 +256,14 @@
             
             try {
                 // IMPORTANTE: Reemplaza esta URL con la de TU webhook de Make.com
-                const response = await fetch('https://pierofucile1.app.n8n.cloud/webhook/imagecreationML', {
+                await fetch(
+                'https://pierofucile1.app.n8n.cloud/webhook/imagecreationML', // ➌ solo aquí se hace el POST real
+                {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify(datosFormulario)
-                });
+                }
+                );
                 
                 if (response.ok) {
                     const resultado = await response.json();
